@@ -1,4 +1,4 @@
-# FastAPI Backend
+# FastAPI
 fastapi==0.110.0
 uvicorn[standard]==0.29.0
 python-multipart==0.0.9
@@ -23,7 +23,3 @@ pypdf>=4.0.0
 python-dotenv==1.0.1
 pydantic==2.6.4
 pydantic-settings==2.2.1
-
-# Frontend
-streamlit>=1.30.0
-requests>=2.31.0

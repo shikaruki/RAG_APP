@@ -25,20 +25,23 @@ A production-ready RAG (Retrieval-Augmented Generation) chatbot built with FastA
 ## 📁 Project Structure
 
 ```
-├── app/
-│   ├── main.py           # FastAPI application
-│   ├── config.py         # Configuration (env vars)
-│   ├── embeddings.py     # Voyage AI embeddings with retry
-│   ├── vector_store.py   # Qdrant integration
-│   ├── llm_service.py    # Groq LLM service
-│   ├── job_manager.py    # Async job tracking
-│   └── routers/
-│       ├── ingestion.py  # Document upload (async)
-│       └── chat.py       # Chat endpoints
-├── frontend.py           # Streamlit UI
-├── .streamlit/config.toml # Streamlit config (30MB limit)
-├── requirements.txt
-├── render.yaml           # Render deployment config
+├── backend/
+│   ├── app/
+│   │   ├── main.py           # FastAPI application
+│   │   ├── config.py         # Configuration (env vars)
+│   │   ├── embeddings.py     # Voyage AI embeddings
+│   │   ├── vector_store.py   # Qdrant integration
+│   │   ├── llm_service.py    # Groq LLM service
+│   │   ├── job_manager.py    # Async job tracking
+│   │   └── routers/
+│   │       ├── ingestion.py  # Document upload (async)
+│   │       └── chat.py       # Chat endpoints
+│   └── requirements.txt      # Backend dependencies
+├── frontend/
+│   ├── frontend.py           # Streamlit UI
+│   ├── .streamlit/config.toml
+│   └── requirements.txt      # Frontend dependencies
+├── render.yaml               # Render deployment config
 └── .env.example
 ```
 
@@ -48,7 +51,12 @@ A production-ready RAG (Retrieval-Augmented Generation) chatbot built with FastA
 ```bash
 git clone <your-repo-url>
 cd SBI_Card_RAG
-pip install -r requirements.txt
+
+# Install backend dependencies
+pip install -r backend/requirements.txt
+
+# Install frontend dependencies
+pip install -r frontend/requirements.txt
 ```
 
 ### 2. Get API Keys (Free Tiers Available)
@@ -75,9 +83,11 @@ QDRANT_API_KEY=your_qdrant_key
 ### 4. Run Locally
 ```bash
 # Terminal 1 - Backend
+cd backend
 uvicorn app.main:app --reload --port 8000
 
 # Terminal 2 - Frontend
+cd frontend
 streamlit run frontend.py --server.port 8501
 ```
 

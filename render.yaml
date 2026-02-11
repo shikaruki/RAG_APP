@@ -3,6 +3,7 @@ services:
   - type: web
     name: sbi-card-rag-api
     env: python
+    rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
@@ -19,6 +20,7 @@ services:
   - type: web
     name: sbi-card-rag-frontend
     env: python
+    rootDir: frontend
     buildCommand: pip install -r requirements.txt
     startCommand: streamlit run frontend.py --server.port $PORT --server.address 0.0.0.0
     envVars:
