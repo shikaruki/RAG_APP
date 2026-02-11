@@ -6,6 +6,7 @@ python-multipart>=0.0.9
 # LangChain (for PDF loading)
 langchain>=0.1.20
 langchain-community>=0.0.38
+langchain-text-splitters>=0.0.1
 
 # Voyage AI for embeddings
 voyageai>=0.2.0

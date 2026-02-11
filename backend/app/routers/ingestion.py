@@ -7,7 +7,7 @@ import uuid
 import asyncio
 import tempfile
 from fastapi import APIRouter, UploadFile, File, HTTPException, BackgroundTasks
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 
 from app.config import settings
