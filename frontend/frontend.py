@@ -7,8 +7,8 @@ import requests
 import time
 import os
 
-# Configuration - use environment variable for deployment
-API_URL = os.getenv("API_URL", "http://localhost:8000")
+# Configuration - use deployed backend URL
+API_URL = os.getenv("API_URL", "https://rag-app-api.onrender.com")
 
 # Page config
 st.set_page_config(

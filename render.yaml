@@ -1,11 +1,11 @@
 services:
-  # FastAPI Backend
+  # Combined Streamlit + FastAPI (single service)
   - type: web
-    name: sbi-card-rag-api
+    name: rag-chatbot
     env: python
-    rootDir: backend
+    rootDir: frontend
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    startCommand: streamlit run frontend.py --server.port $PORT --server.address 0.0.0.0
     envVars:
       - key: VOYAGE_API_KEY
         sync: false
@@ -14,15 +14,4 @@ services:
       - key: QDRANT_URL
         sync: false
       - key: QDRANT_API_KEY
-        sync: false
-
-  # Streamlit Frontend
-  - type: web
-    name: sbi-card-rag-frontend
-    env: python
-    rootDir: frontend
-    buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run frontend.py --server.port $PORT --server.address 0.0.0.0
-    envVars:
-      - key: API_URL
         sync: false
