@@ -1,14 +1,28 @@
 """
 RAG Chatbot with Multi-Document Support
+Runs FastAPI backend internally for single-service deployment.
 """
 
 import streamlit as st
 import requests
 import time
 import os
+import threading
+import uvicorn
 
-# Configuration - use deployed backend URL
-API_URL = os.getenv("API_URL", "https://rag-app-api.onrender.com")
+# Start FastAPI backend in background thread (only once)
+def start_backend():
+    from app.main import app
+    uvicorn.run(app, host="127.0.0.1", port=8000, log_level="warning")
+
+if "backend_started" not in st.session_state:
+    st.session_state.backend_started = True
+    thread = threading.Thread(target=start_backend, daemon=True)
+    thread.start()
+    time.sleep(2)  # Wait for backend to start
+
+# API URL points to internal backend
+API_URL = "http://127.0.0.1:8000"
 
 # Page config
 st.set_page_config(
