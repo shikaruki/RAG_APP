@@ -107,9 +107,9 @@ def search(query: str, doc_id: Optional[str] = None, limit: int = 5) -> List[Dic
             must=[FieldCondition(key="doc_id", match=MatchValue(value=doc_id))]
         )
     
-    results = qdrant.search(
+    results = qdrant.query_points(
         collection_name=settings.COLLECTION_NAME,
-        query_vector=query_vector,
+        query=query_vector,
         query_filter=query_filter,
         limit=limit
     )
@@ -121,7 +121,7 @@ def search(query: str, doc_id: Optional[str] = None, limit: int = 5) -> List[Dic
             "doc_id": r.payload.get("doc_id"),
             "doc_name": r.payload.get("doc_name")
         }
-        for r in results
+        for r in results.points
     ]
 
 
